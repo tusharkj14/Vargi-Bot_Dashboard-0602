@@ -169,7 +169,7 @@
         var map = L.map('map').setView([20.5937, 78.9629], 4);
         var jsonDataObject =[];
 
-        $.getJSON('https://spreadsheets.google.com/feeds/list/1U_OSiJJUvwhN7Lw775azxeNfwE_IhuSfvQM4lzHJt54/5/public/full?alt=json', function(data) {
+        $.getJSON('https://spreadsheets.google.com/feeds/list/1iV2aeobE03DradLO-w99SPuQLHaGm_vCJVbS7QRkssE/5/public/full?alt=json', function(data) {
         for (var i = 0; i < data.feed.entry.length; ++i) {
 
             var json_data = {
@@ -186,7 +186,7 @@
             for (var j = 0; j < jsonDataObject.length; j++) {
                 var marker = L.marker(L.latLng(parseFloat(jsonDataObject[j].Latitude), parseFloat(jsonDataObject[j].Longitude)));
                 var oIcon = new L.Icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
                     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
                     iconSize: [25, 41],
                     iconAnchor: [12, 41],
@@ -197,7 +197,7 @@
 
                 if (jsonDataObject[j].DispatchStatus == "YES") {
                     var oIcon = new L.Icon({
-                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png',
+                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
                         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
                         iconSize: [25, 41],
                         iconAnchor: [12, 41],
@@ -208,7 +208,7 @@
 
                 if (jsonDataObject[j].ShippedStatus == "YES") {
                     var oIcon = new L.Icon({
-                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
                         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
                         iconSize: [25, 41],
                         iconAnchor: [12, 41],
@@ -262,7 +262,7 @@
         
         // var trHTML = '';     
         
-        $.getJSON('https://spreadsheets.google.com/feeds/list/1U_OSiJJUvwhN7Lw775azxeNfwE_IhuSfvQM4lzHJt54/5/public/full?alt=json', function(data) {
+        $.getJSON('https://spreadsheets.google.com/feeds/list/1iV2aeobE03DradLO-w99SPuQLHaGm_vCJVbS7QRkssE/5/public/full?alt=json', function(data) {
             
                 var trHTML = '';
 
@@ -302,7 +302,7 @@
         var jsonDataObject =[];
         var graph_arr = [['Order ID', 'Time Taken', { role: 'style' }]];
         var bar_color = [];
-        $.getJSON('https://spreadsheets.google.com/feeds/list/1U_OSiJJUvwhN7Lw775azxeNfwE_IhuSfvQM4lzHJt54/5/public/full?alt=json', function(data) {
+        $.getJSON('https://spreadsheets.google.com/feeds/list/1iV2aeobE03DradLO-w99SPuQLHaGm_vCJVbS7QRkssE/5/public/full?alt=json', function(data) {
         for (var i = 0; i < data.feed.entry.length; ++i) {
             var json_data = {
               "OderID" : data.feed.entry[i].gsx$orderid.$t,
