@@ -137,6 +137,7 @@
             <th>Dispatch Date and Time</th>
             <th>Shipped Status</th>
             <th>Shipped Date and Time</th>
+            <th>Time Taken(in s)</th>
         </tr>
         <tbody id="tableContent">
         </tbody>
@@ -278,6 +279,7 @@
                               '</td><td>' + data.feed.entry[i].gsx$dispatchdateandtime.$t + 
                               '</td><td>' + data.feed.entry[i].gsx$shippedstatus.$t + 
                               '</td><td>' + data.feed.entry[i].gsx$shippeddateandtime.$t + 
+                              '</td><td>' + data.feed.entry[i].gsx$timetakenins.$t + 
                               '</td></tr>';
 
                 }
