@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Node-1 - VB eYRC 2020-21</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">VB eYRC 2020-21</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explanation <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../summary/">Summary</a>
+</li>
+                                    
+<li >
+    <a href="../impl/">Implementation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">pkg_task5 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li class="active">
+    <a href="./">Node-1</a>
+</li>
+                                    
+<li >
+    <a href="../node_t5_u2/">Node-2</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">pkg_ros-iot-bridge <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../rib/">Action-Server</a>
+</li>
+                                    
+<li >
+    <a href="../iot/">IoT</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">message and config <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../msg/">the .msg files</a>
+</li>
+                                    
+<li >
+    <a href="../cnfg/">the config folder</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../impl/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../node_t5_u2/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#this-documentation-covers-the-code-related-to-dispatching-the-package">This Documentation covers the Code related to Dispatching the package</a></li>
+            <li><a href="#class-iotactionclient">Class IotActionClient</a></li>
+            <li><a href="#class-cartesianpath">Class CartesianPath</a></li>
+            <li><a href="#class-camera1">Class Camera1</a></li>
+            <li><a href="#sending-order-details">Sending Order Details</a></li>
+            <li><a href="#getting-package">Getting Package</a></li>
+            <li><a href="#selecting-package">Selecting Package</a></li>
+            <li><a href="#callback-function-for-incoming-orders">Callback Function for Incoming Orders</a></li>
+            <li><a href="#sending-package-colours">Sending Package Colours</a></li>
+            <li><a href="#main-function">Main Function</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="this-documentation-covers-the-code-related-to-dispatching-the-package">This Documentation covers the Code related to Dispatching the package</h1>
+<h2 id="class-iotactionclient">Class IotActionClient</h2>
+<p>This Class is to use methods related to
+Action client for an action server.</p>
+<pre><code>1.  __init__(self):
+
+    creates a class for the action client, to
+    send goals to the action server. This time
+    to publish/append Data from the UR5_2 arm side
+    to the google spreadsheet
+
+
+2.  on_transition(self, goal_handle):
+
+    function generated during transition of goal
+
+    Parameters
+    ------------------
+    :type goal_handle: list
+    :            Contains the goal to be sent in a python list format
+    ------------------
+
+    Is called when the send goal method is called
+
+
+3.  send_goal(self, arg_topic, arg_string):
+
+    function to send goal to action server
+    Python list and string methods are called
+    and a goal is sent to the action server
+
+    Parameters
+    ------------------
+    :type arg_topic: string
+    :           the name of the method that selects which spreadsheet to update
+    :type arg_list: list
+    :           the message that has to be appended in the google sheet
+</code></pre>
+<h2 id="class-cartesianpath">Class CartesianPath</h2>
+<p>This class is used for methods related to
+the moveit UR5 arm</p>
+<pre><code>1   __init__(self, arg_robot_name):
+
+    This constructs an object for UR5 moveit class
+    which finds the package on the conveyor belt
+    and drops it into the respective bin
+
+    Parameters:
+        type arg_robot_name: string
+                             it is the UR5 arm which we are trying to use
+
+
+
+2   go_to_pose(self, arg_pose):
+
+    This function makes the UR5 arm to go to a
+    particular pose for which Inverse Kinematics is valid
+
+    Parameters:
+         type arg_pose: geometry_msgs msg
+                        Set of valid coordinates
+
+
+
+3   set_joint_angles(self, arg_list_joint_angles):
+
+    This function sets the different joints
+    of UR5 arm to the given value
+
+    Parameters:
+            type arg_list_joint_angles: List of angles in Radians
+                                        Different Angles ranging from -180 to +180
+                                        for each joint angle
+
+
+
+4   hard_set_joint_angles(self, arg_list_joint_angles, arg_max_attempts):
+
+    This function sets the different joints
+    of UR5 arm to the given value.
+    It loops through a range until the result is achieved
+
+    Parameters:
+            type arg_list_joint_angles: List of angles in Radians
+                                        Different Angles ranging from -180 to +180
+                                        for each joint angle
+            type arg_max_attempts: Int value for range
+                                   The number of attempts to set the joint angles
+
+
+
+5   attach_box(self, box_name,  timeout=4):
+
+    This Function attaches a given package to the
+    end effector in both Gazebo and Moveit, so that it can
+    form a collision free path.
+    it also uses the Vaccum gripper Service
+
+    Parameters:
+            type box_name: string
+                name of the package
+
+
+6   detach_box(self, arg_name, timeout=4):
+    This Function detaches a given package to the
+    end effector in both Gazebo and Moveit
+    it also uses the Vaccum gripper Service
+
+    Parameters:
+            type box_name: string
+                name of the package
+
+
+7   remove_object(self, arg_name, timeout=4):
+
+    This Function removes a package from the planning
+    scene in moveit
+
+    Parameters:
+            type box_name: string
+                name of the package
+
+
+
+8   moveit_play_planned_path_from_file(self, arg_file_path, arg_file_name):
+
+    This function loads the yaml file containing
+    the already travelled path by a UR5 arm between two poses
+
+    Parameters:
+        type arg_file_path: string
+                The directory where the yaml file is stored
+
+        type arg_file_name: string
+                The name of the yaml file to load
+
+
+9   moveit_hard_play_planned_path_from_file(self, arg_file_path, arg_file_name, arg_max_attempts):
+
+    This function loads the yaml file containing
+    the already travelled path by a UR5 arm between two poses
+    until true while looping for a given number of attempts
+
+    Parameters:
+        type arg_file_path: string
+                The directory where the yaml file is stored
+
+        type arg_file_name: string
+                The name of the yaml file to load
+
+        type arg_max_attempts: Int value for range
+                The number of attempts to set the joint angles
+</code></pre>
+<h2 id="class-camera1">Class Camera1</h2>
+<p>class to access 2d camera</p>
+<pre><code>1.  get_qr_data(self, arg_image):
+
+    This function uses the decode attribute of pyzbar
+    then we sort the packages according to the Rect Coordinates
+    and save the sorted color list at self.qr
+    Parameters:
+            type arg_image: Numpy Array
+                An image in the form of a numpy array
+
+
+2.  callback(self, data):
+
+    callback fn called when 2d camera topic is subscribed
+
+    Parameters:
+            type data: 2d Camera Message
+                Message received using 2d camera
+</code></pre>
+<h2 id="sending-order-details">Sending Order Details</h2>
+<p>To send order details to the second node</p>
+<pre><code>sendorder(s1, s2, s3):
+
+    This function gets the order details bound with
+    the package just disptached and publishes
+    it on a topic for the 2nd node to access it
+    also it waits till any one subscribes to the topic
+
+    Parameters:
+            type s1: string
+                the order ID of the package
+
+            type s2: String
+                City of Order
+
+            type s3: String
+                Order Quantity
+</code></pre>
+<h2 id="getting-package">Getting Package</h2>
+<pre><code>get_pkg(arg_name, arg_list):
+
+    This function plays the saved trajectory
+    to the package that it gets from select_pkg function
+    Then appends the data to the Orders Dispatch sheet
+    and deletes the instance of the order details globaly
+
+    Parameters:
+            type arg_name: string
+                the name of the package
+
+            type arg_list: list
+                List containing the order details of the package that has to be sent
+</code></pre>
+<h2 id="selecting-package">Selecting Package</h2>
+<pre><code>select_pkg(arg_list):
+
+    This function finds out which
+    package to select using their order ID.
+    Since each Order ID is unique, we made the Code
+    find the package to dispatch using the order ID
+
+    2 Threads are made - 
+    One to get the required package 
+    One to send the order details of that package to node 2
+
+    Parameters:
+            type arg_list: list
+                List containing the order details of the package that has to be sent
+</code></pre>
+<h2 id="callback-function-for-incoming-orders">Callback Function for Incoming Orders</h2>
+<pre><code>func_callback(data):
+
+    This function gets messages from the "Incoming Orders"
+    rostopic and append it to a global list called
+    lst_order.
+    Appends the data to the Incoming Orders Sheet
+
+    Parameters:
+            type data: Rostopic Message
+                Data contained in the rostopic message
+</code></pre>
+<h2 id="sending-package-colours">Sending Package Colours</h2>
+<pre><code>sendcolor(lst):
+
+    This function gets the sorted color list for all the package
+    and then publish it on a topic for the 2nd node to access it
+    also it waits till any one subscribes to the topic
+
+    Parameters:
+            type arg_list: list
+                List containing the colour names of different packages
+</code></pre>
+<h2 id="main-function">Main Function</h2>
+<blockquote>
+<p>The Main Function-
+Starts the conveyor belt
+Gets the value of different colors of the packages and calls sendorder
+Appends data into the Inventory Sheet
+Constantly Subscribed to the Rostopic to get incoming orders from Action Server</p>
+</blockquote>
+<pre><code>"""
+    to make sure that the High priority orders , those with
+    order ID starting with 1 is sent first, we are sorting the
+    incoming orders list in descending order
+    and then select the last element of the list
+"""
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

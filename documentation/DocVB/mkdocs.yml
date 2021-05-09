@@ -1,0 +1,15 @@
+site_name: VB eYRC 2020-21
+nav:
+    - Home: index.md
+    - 'Explanation': 
+      - Summary: summary.md
+      - Implementation: impl.md
+    - 'pkg_task5':
+      - Node-1: node_t5_u1.md
+      - Node-2: node_t5_u2.md
+    - 'pkg_ros-iot-bridge': 
+      - Action-Server: rib.md
+      - IoT: iot.md
+    - 'message and config': 
+      - the .msg files:  msg.md
+      - the config folder:  cnfg.md
